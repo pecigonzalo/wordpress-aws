@@ -30,10 +30,22 @@ output "security_group_id" {
 
 output "hostname" {
   description = "Friendly hostname to access the DB"
-  value       = "${join("", aws_route53_record.default.*.fqdn)}"
+  value       = "${join("", aws_route53_record.default.fqdn)}"
 }
 
 output "alias_url" {
   description = "URL of the DB for programmatic uses"
-  value       = "postgresql://${join(" ", aws_route53_record.default.*.fqdn)}/${aws_db_instance.default.name}"
+  value       = "postgresql://${join(" ", aws_route53_record.default.fqdn)}/${aws_db_instance.default.name}"
+}
+
+output "database_user" {
+  description = "Database username"
+  value       = "${random_string.rds_admin_user.result}"
+  sensitive   = true
+}
+
+output "database_password" {
+  description = "Database password"
+  value       = "${random_string.rds_admin_password.result}"
+  sensitive   = true
 }
