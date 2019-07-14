@@ -59,3 +59,13 @@ output "internal_dns_zone_id" {
   description = "Internal DNS Zone ID"
   value       = "${aws_route53_zone.internal.id}"
 }
+
+output "chamber_key_id" {
+  description = "KMS key ID"
+  value       = "${aws_kms_key.chamber.id}"
+}
+
+output "chamber_key_arn" {
+  value       = "${aws_kms_key.chamber.arn}"
+  description = "Key ARN"
+}
