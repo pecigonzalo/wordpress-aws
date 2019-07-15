@@ -28,6 +28,8 @@ The wordpress ASG is currently in the public subnet with mapped IPs, the only re
 
 ## References
 - https://d1.awsstatic.com/whitepapers/wordpress-best-practices-on-aws.pdf
+- https://cloudonaut.io/wordpress-on-aws-you-are-holding-it-wrong/
+- https://cloudonaut.io/wordpress-on-aws-smooth-and-pain-free/
 - Public modules ideas
   - https://github.com/cloudposse
   - https://github.com/terraform-aws-modules
