@@ -39,6 +39,11 @@ resource "aws_lb_target_group" "wordpress" {
   vpc_id      = "${var.vpc_id}"
   target_type = "instance"
 
+  stickiness {
+    enabled = true
+    type    = "lb_cookie"
+  }
+
   health_check {
     path                = "/"
     timeout             = 10
