@@ -10,7 +10,7 @@ module "mysql" {
 
 resource "aws_ssm_parameter" "wordpress_db_host" {
   name      = "/${var.name}/wordpress/wordpress_db_host"
-  value     = "${module.mysql.hostname}"
+  value     = "${module.mysql.hostname}:3306"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
   overwrite = true

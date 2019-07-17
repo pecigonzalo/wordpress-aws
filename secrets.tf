@@ -4,7 +4,7 @@ resource "random_string" "auth_key" {
 }
 
 resource "aws_ssm_parameter" "auth_key" {
-  name      = "/${var.name}/wordpress/auth_key"
+  name      = "/${var.name}/wordpress/wordpress_auth_key"
   value     = "${random_string.auth_key.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -17,7 +17,7 @@ resource "random_string" "secure_auth_key" {
 }
 
 resource "aws_ssm_parameter" "secure_auth_key" {
-  name      = "/${var.name}/wordpress/secure_auth_key"
+  name      = "/${var.name}/wordpress/wordpress_secure_auth_key"
   value     = "${random_string.secure_auth_key.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -30,7 +30,7 @@ resource "random_string" "logged_in_key" {
 }
 
 resource "aws_ssm_parameter" "logged_in_key" {
-  name      = "/${var.name}/wordpress/logged_in_key"
+  name      = "/${var.name}/wordpress/wordpress_logged_in_key"
   value     = "${random_string.logged_in_key.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -43,7 +43,7 @@ resource "random_string" "nonce_key" {
 }
 
 resource "aws_ssm_parameter" "nonce_key" {
-  name      = "/${var.name}/wordpress/nonce_key"
+  name      = "/${var.name}/wordpress/wordpress_nonce_key"
   value     = "${random_string.nonce_key.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -56,7 +56,7 @@ resource "random_string" "auth_salt" {
 }
 
 resource "aws_ssm_parameter" "auth_salt" {
-  name      = "/${var.name}/wordpress/auth_salt"
+  name      = "/${var.name}/wordpress/wordpress_auth_salt"
   value     = "${random_string.auth_salt.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -69,7 +69,7 @@ resource "random_string" "secure_auth_salt" {
 }
 
 resource "aws_ssm_parameter" "secure_auth_salt" {
-  name      = "/${var.name}/wordpress/secure_auth_salt"
+  name      = "/${var.name}/wordpress/wordpress_secure_auth_salt"
   value     = "${random_string.secure_auth_salt.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -82,7 +82,7 @@ resource "random_string" "logged_in_salt" {
 }
 
 resource "aws_ssm_parameter" "logged_in_salt" {
-  name      = "/${var.name}/wordpress/logged_in_salt"
+  name      = "/${var.name}/wordpress/wordpress_logged_in_salt"
   value     = "${random_string.logged_in_salt.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
@@ -95,7 +95,7 @@ resource "random_string" "nonce_salt" {
 }
 
 resource "aws_ssm_parameter" "nonce_salt" {
-  name      = "/${var.name}/wordpress/nonce_salt"
+  name      = "/${var.name}/wordpress/wordpress_nonce_salt"
   value     = "${random_string.nonce_salt.result}"
   type      = "SecureString"
   key_id    = "${var.chamber_key_id}"
