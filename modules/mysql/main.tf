@@ -11,7 +11,7 @@ resource "random_string" "rds_admin_user" {
 resource "random_string" "rds_admin_password" {
   length           = 16
   special          = true
-  override_special = "/@ "
+  override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
 resource "random_pet" "rds_db_name" {
