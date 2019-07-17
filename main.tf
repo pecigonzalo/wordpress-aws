@@ -100,6 +100,9 @@ resource "aws_autoscaling_group" "wordpress" {
   min_size             = 2
   max_size             = 2
 
+  health_check_grace_period = 600
+  health_check_type         = "ELB"
+
   launch_template {
     id      = "${aws_launch_template.wordpress.id}"
     version = "${aws_launch_template.wordpress.latest_version}"
