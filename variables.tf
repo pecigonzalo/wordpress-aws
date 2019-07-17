@@ -57,23 +57,6 @@ variable "ssh_key_name" {
   default     = ""
 }
 
-variable "root_volume_size" {
-  description = "Root volume size in GB"
-  default     = 20
-}
-
-variable "ingress_allow_security_groups" {
-  description = "A list of security group IDs to allow traffic from"
-  type        = "list"
-  default     = []
-}
-
-variable "ingress_allow_cidr_blocks" {
-  description = "A list of CIDR blocks to allow traffic from"
-  type        = "list"
-  default     = []
-}
-
 variable "wordpress_site_title" {
   description = "Wordpress Site default Title"
   default     = "Demo Wordpress Site"
