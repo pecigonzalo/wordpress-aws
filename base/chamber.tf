@@ -6,6 +6,6 @@ resource "aws_kms_key" "chamber" {
 }
 
 resource "aws_kms_alias" "chamber" {
-  name          = "alias/parameter_store_key"
+  name          = "alias/chamber_parameter_store_key"
   target_key_id = "${aws_kms_key.chamber.id}"
 }
