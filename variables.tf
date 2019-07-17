@@ -43,8 +43,8 @@ variable "chamber_key_arn" {
 }
 
 variable "image_id" {
-  description = "AMI ID to use"
-  default     = "ami-0c15064daa40f95b5"
+  description = "Debian AMI ID"
+  default     = "ami-0c15064daa40f95b5" # Debian 9
 }
 
 variable "instance_type" {
