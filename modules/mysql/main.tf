@@ -48,7 +48,6 @@ resource "aws_db_instance" "default" {
   iops              = "${var.iops}"
 
   final_snapshot_identifier = "${var.name}${random_pet.rds_dns_name.id}"
-  skip_final_snapshot       = true                                       # TODO: Remove this for production environments
 
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   db_subnet_group_name   = "${aws_db_subnet_group.default.name}"
