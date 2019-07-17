@@ -1,8 +1,9 @@
 data "template_file" "user_data" {
-  template = "${file("${path.module}/user_data/wordpress.yml")}"
+  template = "${file("${path.module}/user_data/bootstrap.sh")}"
 
   vars {
     NAME = "${var.name}"
+    EFS  = "${aws_efs_file_system.wordpress.id}.efs.${data.aws_region.current.name}.amazonaws.com"
   }
 }
 
@@ -12,6 +13,11 @@ data "template_cloudinit_config" "user_data" {
 
   part {
     content_type = "text/cloud-config"
+    content      = "${file("${path.module}/user_data/wordpress.yml")}"
+  }
+
+  part {
+    content_type = "text/x-shellscript"
     content      = "${data.template_file.user_data.rendered}"
   }
 }
@@ -86,6 +92,21 @@ resource "aws_autoscaling_group" "wordpress" {
     create_before_destroy = true
     ignore_changes        = ["desired_capacity"]
   }
+
+  depends_on = [
+    "aws_ssm_parameter.wordpress_db_host",
+    "aws_ssm_parameter.wordpress_db_user",
+    "aws_ssm_parameter.wordpress_db_password",
+    "aws_ssm_parameter.wordpress_db_name",
+    "aws_ssm_parameter.auth_key",
+    "aws_ssm_parameter.secure_auth_key",
+    "aws_ssm_parameter.logged_in_key",
+    "aws_ssm_parameter.nonce_key",
+    "aws_ssm_parameter.auth_salt",
+    "aws_ssm_parameter.secure_auth_salt",
+    "aws_ssm_parameter.logged_in_salt",
+    "aws_ssm_parameter.nonce_salt",
+  ]
 }
 
 data "aws_iam_policy_document" "chamber" {
