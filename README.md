@@ -40,7 +40,8 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 | wordpress\_user | Wordpress username |
 
 ## Notes
-The wordpress ASG is currently in the public subnet with mapped IPs, the only reason for this is to avoid the aditional bastion host for this demo.
+- Terraform is not configured with `remote-state`, if you wish to copy this to a production deployt, I recommend enabling that.
+- You can install default plugins using the `wp-cli` in `user_data/bootstrap.sh`
 
 ## Tech Stack
 - Terraform
@@ -66,3 +67,7 @@ The wordpress ASG is currently in the public subnet with mapped IPs, the only re
 - Public modules ideas
   - https://github.com/cloudposse
   - https://github.com/terraform-aws-modules
+
+## License
+
+MIT (see [LICENSE](LICENSE))
