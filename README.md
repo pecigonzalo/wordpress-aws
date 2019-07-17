@@ -56,6 +56,7 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 - `wp-cli` can be used to further tweak and configure the initial deployment, installing plugins/etc
 - To ensure this can be easily reused, the setup uses `80` on the LB, but `443` and the default CloudFront certificate on its distribution. If you have a private domain, you can easily integrate your domain to this setup, change `user_data/bootstrap.sh` as documented and `cloudfront.tf` to use `HTTPS` while traffic is outside the VPC (Cloudfront -> ALB)
 - Many settings have been set to a static value for this setup (cloudfront protocol targets, ports, timeouts, etc) this can be easily transformed to vars to reuse this code
+- This stack can be easily transfered to EKS/ECS-EC2/DockerSwarm/EB/etc
 
 ## Tech Stack
 - Terraform
