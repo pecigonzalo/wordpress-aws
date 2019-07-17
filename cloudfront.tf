@@ -7,10 +7,12 @@ resource "aws_cloudfront_distribution" "wordpress" {
     origin_id   = "alb"
 
     custom_origin_config {
-      http_port              = 80
-      https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1.2"]
+      http_port                = 80
+      https_port               = 443
+      origin_protocol_policy   = "http-only"
+      origin_ssl_protocols     = ["TLSv1.2"]
+      origin_keepalive_timeout = 60
+      origin_read_timeout      = 30
     }
   }
 
@@ -25,13 +27,13 @@ resource "aws_cloudfront_distribution" "wordpress" {
       "PUT",
     ]
 
-    cached_methods = ["GET", "HEAD"]
+    cached_methods = ["GET", "HEAD", "OPTIONS"]
 
     target_origin_id = "alb"
     compress         = true
 
     forwarded_values {
-      headers = ["*"]
+      headers = ["Host", "Options"]
 
       query_string = true
 
@@ -60,7 +62,7 @@ resource "aws_cloudfront_distribution" "wordpress" {
       "PUT",
     ]
 
-    cached_methods = ["GET", "HEAD"]
+    cached_methods = ["GET", "HEAD", "OPTIONS"]
 
     target_origin_id = "alb"
     compress         = true
@@ -76,9 +78,9 @@ resource "aws_cloudfront_distribution" "wordpress" {
 
     viewer_protocol_policy = "redirect-to-https"
 
-    default_ttl = 900
-    min_ttl     = 900
-    max_ttl     = 900
+    default_ttl = 86400
+    min_ttl     = 0
+    max_ttl     = 604800
   }
 
   ordered_cache_behavior {
@@ -94,7 +96,7 @@ resource "aws_cloudfront_distribution" "wordpress" {
       "PUT",
     ]
 
-    cached_methods = ["GET", "HEAD"]
+    cached_methods = ["GET", "HEAD", "OPTIONS"]
 
     target_origin_id = "alb"
     compress         = true
@@ -110,9 +112,9 @@ resource "aws_cloudfront_distribution" "wordpress" {
 
     viewer_protocol_policy = "redirect-to-https"
 
-    default_ttl = 900
-    min_ttl     = 900
-    max_ttl     = 900
+    default_ttl = 86400
+    min_ttl     = 0
+    max_ttl     = 604800
   }
 
   restrictions {
