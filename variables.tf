@@ -57,6 +57,11 @@ variable "ssh_key_name" {
   default     = ""
 }
 
+variable "wordpress_version" {
+  description = "Wordpress Docker image version"
+  default     = "5.2"
+}
+
 variable "wordpress_site_title" {
   description = "Wordpress Site default Title"
   default     = "Demo Wordpress Site"

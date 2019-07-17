@@ -20,6 +20,7 @@ data "template_file" "user_data" {
     ADMIN_USER     = "${random_string.wordpress_admin_user.result}"
     ADMIN_PASSWORD = "${random_string.wordpress_admin_password.result}"
     ADMIN_EMAIL    = "${var.wordpress_admin_email}"
+    WP_VERSION     = "${var.wordpress_version}"
   }
 }
 
