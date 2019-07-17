@@ -33,9 +33,10 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 
 | Name | Description |
 |------|-------------|
-| cf\_dns\_name |  |
-| lb\_dns\_name |  |
+| cf\_dns\_name | Cloudfront DNS Name |
+| lb\_dns\_name | Loadbalancer DNS Name |
 | wordpress\_password | Wordpress password |
+| wordpress\_url | Wordpress Site URL |
 | wordpress\_user | Wordpress username |
 
 ## Notes
