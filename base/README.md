@@ -8,6 +8,7 @@ In many environments you would reuse the existing VPC and subnets. If you dont h
 
 - Run `make plan` and review the plan output
 - If plan looks correct, run `make apply`
+- Use `make destroy` to destroy created resources
 
 A file `.terraform/output.tfvars.json` will be stored with the output, it can be used as `terraform apply -var-file=.terraform/output.tfvars.json` to pass the output as input to other terraform code.
 In case you have `remote-state` enabled, you can directly reference the remote state.

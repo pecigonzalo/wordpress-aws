@@ -8,6 +8,7 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 - Run `make plan` and review the plan output
 - If plan looks correct, run `make apply`
 - Get default credentials with `terraform output`
+- Use `make destroy` to destroy created resources
 
 ## Inputs
 
