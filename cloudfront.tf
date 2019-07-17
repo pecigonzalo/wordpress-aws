@@ -74,7 +74,7 @@ resource "aws_cloudfront_distribution" "wordpress" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
 
     default_ttl = 900
     min_ttl     = 900
@@ -108,7 +108,7 @@ resource "aws_cloudfront_distribution" "wordpress" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
 
     default_ttl = 900
     min_ttl     = 900
