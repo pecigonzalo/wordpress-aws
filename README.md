@@ -8,6 +8,7 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 - Run `make plan` and review the plan output
 - If plan looks correct, run `make apply`
 - Get default credentials with `terraform output`
+- Site URL will be shown in the output, append `/wp-admin` to enter the admin interface
 - Use `make destroy` to destroy created resources
 
 ## Inputs
