@@ -96,9 +96,9 @@ resource "aws_autoscaling_group" "wordpress" {
   name_prefix = "${var.name}"
 
   termination_policies = ["OldestLaunchTemplate", "Default"]
-  vpc_zone_identifier  = "${var.public_subnet_ids}"
+  vpc_zone_identifier  = "${var.public_subnet_ids}"          # TODO: Use private subnets if you have a bastion
   min_size             = 2
-  max_size             = 3
+  max_size             = 2
 
   launch_template {
     id      = "${aws_launch_template.wordpress.id}"
