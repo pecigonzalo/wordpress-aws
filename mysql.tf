@@ -4,6 +4,8 @@ module "mysql" {
   vpc_id     = "${var.vpc_id}"
   subnet_ids = "${var.private_subnet_ids}"
   zone_id    = "${var.internal_dns_zone_id}"
+
+  ingress_allow_security_groups = ["${aws_security_group.wordpress.id}"]
 }
 
 resource "aws_ssm_parameter" "wordpress_db_host" {
