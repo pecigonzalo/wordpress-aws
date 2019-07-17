@@ -2,13 +2,21 @@
 
 This projects creates a demo Wordpress stack, its not meant to be production ready, but rather demo AWS and cloud technologies.
 
+### Architecture
+
+![diagram](https://cloudonaut.io/images/2016/10/wordpress-overview.png)
+
 ## Instructions
 - Check and apply the `base` which will create base resources required for this
 - Configure required or desired variables in `local.auto.tfvars`
 - Run `make plan` and review the plan output
 - If plan looks correct, run `make apply`
+- Wait for the site to respond
+  - This might take a moment the first time the instances are bootstrapping
 - Get default credentials with `terraform output`
 - Site URL will be shown in the output, append `/wp-admin` to enter the admin interface
+- Remember to change your default WP credentials!
+- You can iterate over changes using `make replan` and `make reapply`
 - Use `make destroy` to destroy created resources
 
 ## Inputs
@@ -41,8 +49,13 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 | wordpress\_user | Wordpress username |
 
 ## Notes
-- Terraform is not configured with `remote-state`, if you wish to copy this to a production deployt, I recommend enabling that.
+- Terraform is not configured with `remote-state`, if you wish to copy this to a production deployt, I recommend enabling that
 - You can install default plugins using the `wp-cli` in `user_data/bootstrap.sh`
+- SSM Is used a backend to store secrets and pass them to the container
+- Some of the `user_data/bootstrap.sh` logic could be baked in a Docker image, but this allows us to reuse the official Wordpress image as is
+- `wp-cli` can be used to further tweak and configure the initial deployment, installing plugins/etc
+- To ensure this can be easily reused, the setup uses `80` on the LB, but `443` and the default CloudFront certificate on its distribution. If you have a private domain, you can easily integrate your domain to this setup, change `user_data/bootstrap.sh` as documented and `cloudfront.tf` to use `HTTPS` while traffic is outside the VPC (Cloudfront -> ALB)
+- Many settings have been set to a static value for this setup (cloudfront protocol targets, ports, timeouts, etc) this can be easily transformed to vars to reuse this code
 
 ## Tech Stack
 - Terraform
