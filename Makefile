@@ -35,7 +35,6 @@ replan: clean-plan plan
 
 $(OUTPUT_FILE):
 	terraform apply $(PLAN_PATH)
-	terraform output -json > $(OUTPUT_FILE)
 
 apply: plan $(OUTPUT_FILE)
 
