@@ -64,7 +64,7 @@ This projects creates a demo Wordpress stack, its not meant to be production rea
 - Chamber
 - AWS
   - EC2 ASG
-  - S3
+  - CloudFront
   - RDS - MySQL
   - ALB
   - VPC
