@@ -1,9 +1,25 @@
+resource "random_string" "wordpress_admin_user" {
+  length  = 8
+  special = false
+  number  = false
+}
+
+resource "random_string" "wordpress_admin_password" {
+  length  = 32
+  special = true
+}
+
 data "template_file" "user_data" {
   template = "${file("${path.module}/user_data/bootstrap.sh")}"
 
   vars {
-    NAME = "${var.name}"
-    EFS  = "${aws_efs_file_system.wordpress.id}.efs.${data.aws_region.current.name}.amazonaws.com"
+    NAME           = "${var.name}"
+    EFS            = "${aws_efs_file_system.wordpress.id}.efs.${data.aws_region.current.name}.amazonaws.com"
+    DOMAIN         = "https://${aws_cloudfront_distribution.wordpress.domain_name}"
+    TITLE          = "${var.wordpress_site_title}"
+    ADMIN_USER     = "${random_string.wordpress_admin_user.result}"
+    ADMIN_PASSWORD = "${random_string.wordpress_admin_password.result}"
+    ADMIN_EMAIL    = "${var.wordpress_admin_email}"
   }
 }
 

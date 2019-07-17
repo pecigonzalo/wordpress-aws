@@ -32,3 +32,25 @@ docker run -d \
   -v /var/www/html/:/var/www/html/ \
   -p 80:80 \
   wordpress:5.2
+
+wp-cli() {
+  docker run -it --rm \
+    --volumes-from wordpress-fpm \
+    --network container:wordpress-fpm \
+    wordpress:cli "$@"
+}
+
+# Bootstrap WP if first time
+if mkdir /var/www/html/lock; then
+  # Configure HTTPS proto if https as source
+  sed -i "/\$table_prefix = 'wp_';/aif (\$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') \$_SERVER['HTTPS']='on';" /var/www/html/wp-config.php
+
+  # Configure URL/User/etc
+  wp-cli core install \
+    --url="https://${DOMAIN}" \
+    --title="${TITLE}" \
+    --admin_user="${ADMIN_USER}" \
+    --admin_password="${ADMIN_PASSWORD}" \
+    --admin_email="${ADMIN_EMAIL}" \
+    --skip-email
+fi

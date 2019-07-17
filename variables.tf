@@ -73,3 +73,13 @@ variable "ingress_allow_cidr_blocks" {
   type        = "list"
   default     = []
 }
+
+variable "wordpress_site_title" {
+  description = "Wordpress Site default Title"
+  default     = "Demo Wordpress Site"
+}
+
+variable "wordpress_admin_email" {
+  description = "Wordpress Admin email"
+  default     = "null@null.com"
+}
