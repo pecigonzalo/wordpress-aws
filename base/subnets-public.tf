@@ -17,13 +17,13 @@ resource "aws_subnet" "public" {
 
   map_public_ip_on_launch = true
 
-  tags = "${var.tags}"
+  tags = "${merge(map("Name", "public"), var.tags)}"
 }
 
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.default.id}"
 
-  tags = "${var.tags}"
+  tags = "${merge(map("Name", "public"), var.tags)}"
 }
 
 resource "aws_route" "public" {

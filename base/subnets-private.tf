@@ -15,14 +15,14 @@ resource "aws_subnet" "private" {
       count.index
     )}"
 
-  tags = "${var.tags}"
+  tags = "${merge(map("Name", "private"), var.tags)}"
 }
 
 resource "aws_route_table" "private" {
   count  = "${length(var.availability_zones)}"
   vpc_id = "${aws_vpc.default.id}"
 
-  tags = "${var.tags}"
+  tags = "${merge(map("Name", "private"), var.tags)}"
 }
 
 resource "aws_route_table_association" "private" {

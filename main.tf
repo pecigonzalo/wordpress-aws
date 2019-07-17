@@ -38,7 +38,7 @@ resource "aws_launch_template" "wordpress" {
 
   instance_initiated_shutdown_behavior = "terminate"
 
-  tags = "${var.tags}"
+  tags = "${merge(map("Name", "${var.name}"), var.tags)}"
 
   iam_instance_profile {
     arn = "${aws_iam_instance_profile.wordpress.arn}"
@@ -56,12 +56,12 @@ resource "aws_launch_template" "wordpress" {
 
   tag_specifications {
     resource_type = "volume"
-    tags          = "${var.tags}"
+    tags          = "${merge(map("Name", "${var.name}"), var.tags)}"
   }
 
   tag_specifications {
     resource_type = "instance"
-    tags          = "${var.tags}"
+    tags          = "${merge(map("Name", "${var.name}"), var.tags)}"
   }
 
   lifecycle {
