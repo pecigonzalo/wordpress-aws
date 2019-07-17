@@ -33,7 +33,7 @@ resource "aws_cloudfront_distribution" "wordpress" {
     compress         = true
 
     forwarded_values {
-      headers = ["Host", "Options"]
+      headers = ["*"]
 
       query_string = true
 
